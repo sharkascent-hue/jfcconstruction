@@ -407,4 +407,40 @@ h1 .blue,h2 .blue{font-style:italic}
 .rgrid.r3{grid-template-columns:repeat(3,1fr)}
 @media (max-width:900px){.rgrid.r3{grid-template-columns:1fr}}
 @media (max-width:600px){.hphoto .float{display:none}}
-#loader .logo{width:min(300px,62vw)!important}
+/* ===== JFC intro: blockwork wall + logo rising + hoarding gates ===== */
+#loader.build{background:transparent;color:#fff}
+#loader.build .gate{position:absolute;top:0;bottom:0;width:50.2%;z-index:0;background-color:var(--deep);
+  background-image:linear-gradient(rgba(255,177,100,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,177,100,.05) 1px,transparent 1px),linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:120px 120px,120px 120px,24px 24px,24px 24px;transition:transform .95s cubic-bezier(.76,0,.24,1)}
+#loader.build .gate.l{left:0;background-position:right center}
+#loader.build .gate.r{right:0;background-position:left center}
+#loader.build .gate::after{content:"";position:absolute;inset:0;background:radial-gradient(90% 70% at var(--x,100%) 50%,transparent 30%,rgba(5,11,25,.75) 100%)}
+#loader.build .gate.r::after{--x:0%}
+#loader.build .gate.l::before{content:"";position:absolute;top:0;bottom:0;right:0;width:2px;background:var(--blue);box-shadow:0 0 24px 4px rgba(242,138,46,.7);opacity:0;transition:opacity .2s}
+#loader.build .halo{position:absolute;z-index:1;left:50%;top:50%;width:min(110vw,820px);aspect-ratio:1;transform:translate(-50%,-50%) scale(.6);border-radius:50%;background:radial-gradient(circle,rgba(242,138,46,.28),rgba(242,138,46,.06) 42%,transparent 66%);opacity:0;transition:opacity 1s,transform 1.6s cubic-bezier(.2,.8,.2,1)}
+#loader.build .stage{position:relative;z-index:3;width:min(88vw,620px);display:grid;justify-items:center}
+#loader.build .site{position:relative;width:100%;display:grid;justify-items:center;padding-top:clamp(24px,5vw,44px)}
+#loader.build .wall{position:absolute;inset:0;overflow:hidden;-webkit-mask-image:radial-gradient(75% 95% at 50% 100%,#000 40%,transparent 78%);mask-image:radial-gradient(75% 95% at 50% 100%,#000 40%,transparent 78%)}
+#loader.build .wall i{position:absolute;box-sizing:border-box;border:2px solid var(--deep);border-radius:3px;background:linear-gradient(180deg,#22345a,#1a2a4a);opacity:0;transform:translateY(-70px)}
+#loader.build.go .wall i{animation:lay .5s cubic-bezier(.3,1.5,.5,1) var(--d) forwards}
+@keyframes lay{0%{opacity:0;transform:translateY(-70px)}60%{opacity:1;background:linear-gradient(180deg,#f6a052,#d9700f)}100%{opacity:1;transform:none;background:linear-gradient(180deg,#22345a,#1a2a4a)}}
+#loader.build.up .wall{transition:opacity .8s .2s;opacity:.55}
+#loader.build .logo{position:relative;z-index:2;width:min(52vw,280px);overflow:hidden;padding-top:10px}
+#loader.build .logo img{width:100%;height:auto;transform:translateY(112%);filter:drop-shadow(0 10px 30px rgba(0,0,0,.6))}
+#loader.build.up .logo img{transform:none;transition:transform .85s cubic-bezier(.2,.9,.25,1.08)}
+#loader.build.done .logo img{filter:drop-shadow(0 0 26px rgba(242,138,46,.45)) drop-shadow(0 10px 30px rgba(0,0,0,.6));transition:transform .85s cubic-bezier(.2,.9,.25,1.08),filter .6s}
+#loader.build .ground{position:relative;width:100%;height:3px;z-index:2}
+#loader.build .ground i{position:absolute;inset:0;background:linear-gradient(90deg,transparent,var(--blue) 12%,var(--blue-light) 50%,var(--blue) 88%,transparent);transform:scaleX(0);box-shadow:0 0 18px rgba(242,138,46,.6);border-radius:2px}
+#loader.build .ground::after{content:"";position:absolute;left:8%;right:8%;top:5px;height:8px;background:repeating-linear-gradient(90deg,rgba(255,255,255,.35) 0 1px,transparent 1px 24px);opacity:0;transition:opacity .4s .5s}
+#loader.build.go .ground i{transform:none;transition:transform .7s cubic-bezier(.65,0,.35,1)}
+#loader.build.go .ground::after{opacity:1}
+#loader.build .lt{margin-top:26px;font-size:.74rem;letter-spacing:.34em;text-transform:uppercase;font-weight:800;color:rgba(255,255,255,.8);opacity:0;transform:translateY(10px);clip-path:inset(0 100% 0 0)}
+#loader.build.done .lt{opacity:1;transform:none;clip-path:inset(0 0 0 0);transition:opacity .4s,transform .5s,clip-path .9s cubic-bezier(.65,0,.35,1)}
+#loader.build.done .halo{opacity:1;transform:translate(-50%,-50%) scale(1)}
+#loader.build .dust{position:fixed;z-index:4;border-radius:50%;background:radial-gradient(circle,rgba(214,196,170,.55),rgba(214,196,170,0) 70%);pointer-events:none}
+html.intro-out #loader.build{animation:none}
+html.intro-out #loader.build .gate.l{transform:translateX(-100%)}
+html.intro-out #loader.build .gate.r{transform:translateX(100%)}
+html.intro-out #loader.build .gate.l::before{opacity:1}
+html.intro-out #loader.build .stage,html.intro-out #loader.build .halo{opacity:0;transform:scale(.94);transition:opacity .35s,transform .5s}
+html.intro-out #loader.build .halo{transform:translate(-50%,-50%) scale(.9)}

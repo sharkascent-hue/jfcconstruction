@@ -245,11 +245,9 @@ def page(path, active, title, desc, body, intro=False, extra_ld='', kw=''):
     loader = ''
     if intro:
         h += '\n<script>try{if(!sessionStorage.getItem("jfc_intro")||/[?&]intro/.test(location.search))document.documentElement.classList.add("intro")}catch(e){document.documentElement.classList.add("intro")}</script>'
-        loader = f'''<div id="loader" aria-hidden="true" data-apex="0.5,0.04" data-l="0.04,0.66" data-r="0.96,0.66"><div class="sky"></div><i class="glow"></i>
-<i class="ring"></i><i class="ring r2"></i>
-<div class="box"><div class="logo"><img class="off" src="{p}img/logo.png" alt=""><img class="on" src="{p}img/logo.png" alt=""></div><div class="lt">Built from the foundations up</div></div>
-<svg class="bolt"><defs><filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6"/></filter></defs></svg>
-<div class="flash"></div></div>'''
+        loader = f'''<div id="loader" class="build" aria-hidden="true"><i class="gate l"></i><i class="gate r"></i><i class="halo"></i>
+<div class="stage"><div class="site"><div class="wall"></div><div class="logo"><img src="{p}img/logo.png" alt=""></div></div>
+<div class="ground"><i></i></div><div class="lt">Built from the foundations up</div></div></div>'''
     intro_js = ('<script>' + open(os.path.join(ROOT, 'assets', 'intro.js'), encoding='utf-8').read() + '</script>') if intro else ''
     out = f'''{h}
 </head>
